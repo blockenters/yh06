@@ -12,6 +12,23 @@
 
 # 강의자료
 
+---
+
+머신러닝 : https://docs.google.com/presentation/d/1pvgye0Gt5DKgA7Kn5pc4Cfy-D4VtmQTxVIvbxa-GfFc/edit#slide=id.ga8aab8fd2a_0_50
+
+
+모델 및 스케일러 등을 저장하는 방법 : https://bit.ly/3aMhT0Q
+
+
+시카고 범죄 데이터1 : https://drive.google.com/file/d/1fE0ThvIrHLn2_y-L-4AD5Ggpt0bU5F1A/view?usp=sharing
+
+시카고 범죄 데이터2 : https://drive.google.com/file/d/1wo4zY9mz8XzsF7H7OWUAhUrNlKI98xPX/view?usp=sharing
+
+시카고 범죄 데이터3 : https://drive.google.com/file/d/11t2RWb8pRidwDPk5u21GCGEWzLK2tNmG/view?usp=sharing
+
+
+---
+
 
 ## 실습 환경 셋팅 
 
