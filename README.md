@@ -18,6 +18,12 @@
 
 모델 및 스케일러 등을 저장하는 방법 : https://bit.ly/3aMhT0Q
 
+뉴럴넷 (인공신경망) : https://docs.google.com/presentation/d/1DCOW7Lum2rnoPU7gxpznimrXV0DOJFc-YkkJt3jZC0U/edit?usp=sharing
+
+CNN : https://docs.google.com/presentation/d/1En1eB-RJTFWHY7ysQO1dC8y5S5Uoo-hTO8G1xVlp8B0/edit?usp=sharing
+
+트랜스퍼 러닝에 사용가능한 모델들 : https://www.tensorflow.org/api_docs/python/tf/keras/applications?hl=ko
+
 시카고 범죄 데이터1 : https://drive.google.com/file/d/1fE0ThvIrHLn2_y-L-4AD5Ggpt0bU5F1A/view?usp=sharing
 
 시카고 범죄 데이터2 : https://drive.google.com/file/d/1wo4zY9mz8XzsF7H7OWUAhUrNlKI98xPX/view?usp=sharing
