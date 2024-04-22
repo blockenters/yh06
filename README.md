@@ -48,7 +48,7 @@ CNN : https://docs.google.com/presentation/d/1En1eB-RJTFWHY7ysQO1dC8y5S5Uoo-hTO8
 
 세이지메이커 https://docs.google.com/presentation/d/13qJSjkq4oBmZZzzAv4Vxy1OalYm6Ck_o-o5ubNnApvA/edit?usp=sharing
 
-세이지메이커 실습 https://docs.google.com/presentation/d/13qJSjkq4oBmZZzzAv4Vxy1OalYm6Ck_o-o5ubNnApvA/edit?usp=sharing
+세이지메이커 실습 https://docs.google.com/presentation/d/1PmAM9bVF3Ls6H9aMcfgPewj96Dd3K0ofa-kDbCEFNLI/edit?usp=sharing
 
 타임시리즈 예측 https://docs.google.com/presentation/d/1RXvSjorsWNGTWgOgMmoVt453K5CGgudas0xiA8SZlMQ/edit?usp=sharing
 
