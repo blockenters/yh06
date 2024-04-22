@@ -52,6 +52,8 @@ CNN : https://docs.google.com/presentation/d/1En1eB-RJTFWHY7ysQO1dC8y5S5Uoo-hTO8
 
 타임시리즈 예측 https://docs.google.com/presentation/d/1RXvSjorsWNGTWgOgMmoVt453K5CGgudas0xiA8SZlMQ/edit?usp=sharing
 
+티처블 데이터 : https://drive.google.com/file/d/1ewwuT0nOuxV9vJ1gqWB6-EL3L_lF25Jn/view?usp=sharing
+
 이미지 분류 https://docs.google.com/presentation/d/1VZns6eCRIlH-hI0Bp6XDGxa4qHGhj6Ct68xAEe2re4w/edit?usp=sharing
 
 aws rekognition 매뉴얼 : https://docs.aws.amazon.com/ko_kr/rekognition/latest/dg/what-is.html
