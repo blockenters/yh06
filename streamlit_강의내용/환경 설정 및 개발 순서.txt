@@ -1,0 +1,7 @@
+1. Visual Studio Code 다운로드 및 설치
+2. VSC 안에서, python extention 설치
+3. Github.com 가입
+4. Github Desktop 다운로드 및 설치
+5. Github.com에서 새repository 생성
+6. repository 에서 녹색버튼 눌러서 Github Desktop 으로 clone
+7. 내 local repository 를 VSC 로 열어서 코드 작성 
