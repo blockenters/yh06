@@ -14,6 +14,24 @@
 
 ---
 
+## DB
+
+
+데이터베이스 설치 : https://docs.google.com/presentation/d/12Xm89yzn-Lk6eacTjSn59hXrB28Ip4waDyPfe29jXDE/edit?usp=sharing
+
+MySQL Workbench 설치 에러시 : https://musclebear.tistory.com/115
+
+MySQL Workbench safe update 해제 방법 : https://www.geeksengine.com/database/manage-table/safe-update.php
+
+강의자료 : https://docs.google.com/presentation/d/1Mm6h023No5t2jb5VYR8fDsjamXuvilSF7mEXt9US71E/edit?usp=sharing
+
+RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
+
+온프레미스와 클라우드 : https://vision-ai.tistory.com/entry/On-Premise-%EC%99%80-Cloud-Services
+
+
+---
+
 웹 대시보드 소개 : https://docs.google.com/presentation/d/1Tf7Kwnlqz20-ls_2syWhFhNesAv3YYgHQ8El8QsowxE/edit?usp=sharing
 
 비주얼 스튜디오 코드에서 Git 연동하는 방법 : https://docs.google.com/presentation/d/16cxS9jEqpik1JJSkw9zQIBFVKrek8nAYZFagIWfJzc4/edit?usp=sharing
