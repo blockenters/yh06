@@ -29,6 +29,26 @@ RDBMS vs NoSQL : https://vision-ai.tistory.com/entry/RDBMS-vs-NoSQL
 
 온프레미스와 클라우드 : https://vision-ai.tistory.com/entry/On-Premise-%EC%99%80-Cloud-Services
 
+- 실습 : https://docs.google.com/presentation/d/1KPZiQNb8MfKb3tdm01CnENI1CoZ0g7Ga1c8yEStVDMo/edit?usp=sharing
+
+- DB 실습 쿼리문 : https://drive.google.com/open?id=1IHGP15up9P9iliMUCLXab6f-wYpEamuG
+
+- DB 실습문제 1 : https://docs.google.com/presentation/d/1AQPMzJvUCoqTvt_PyfdTLvYCx12W2TmEFU8WBAUzS4Y/edit?usp=sharing
+
+- DB 실습문제 2 : https://docs.google.com/presentation/d/1EUJFxMxHrkL9IQl_gIOF5FwitWfvUsrKnpW8vaWzSvs/edit?usp=sharing
+
+- MySQL date time : https://www.tutorialspoint.com/mysql/mysql-date-time-functions.htm
+
+- DB 실습문제 3 : https://docs.google.com/presentation/d/1bJocq81ssqBg6Vcw5UYonitn5nZslBYgY8XZIrQHCfQ/edit?usp=sharing
+
+- DB 실습문제 4 : https://docs.google.com/presentation/d/14hsC9F9mN-aGIclRCshFwoGrxAKnPKOQ_xUEwIkVgXk/edit?usp=sharing
+
+- DB 실습문제 5 : https://docs.google.com/presentation/d/1G15cXjAkUPHqiC8A0dylpeHdSkO-lYUaTbeDJSpaHIo/edit?usp=sharing
+
+- DB 실습문제 6 : https://docs.google.com/presentation/d/1ElLC3O8C6sslxLlmqoydD5OwJgDQGWuAJuWY3Oevey0/edit?usp=sharing
+
+
+
 
 ---
 
