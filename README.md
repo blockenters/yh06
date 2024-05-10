@@ -7,6 +7,8 @@
 
 블로그 주소 : https://docs.google.com/spreadsheets/d/1HEbUQEB_ASZNancXtztdfefjeGQVLSLgr3R0Oe14maU/edit?usp=sharing
 
+중간 프로젝트 발표 URL : https://docs.google.com/spreadsheets/d/1a03E0aYhsv7rWWoRCUwRqIvXshylzF0Jt08sxHTpYKI/edit?usp=sharing
+
 ---
 
 
