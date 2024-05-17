@@ -1,6 +1,6 @@
-DROP DATABASE IF EXISTS ig_clone;
-CREATE DATABASE ig_clone;
-USE ig_clone; 
+DROP DATABASE IF EXISTS instar_db;
+CREATE DATABASE instar_db;
+USE instar_db; 
 
 CREATE TABLE users (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,
