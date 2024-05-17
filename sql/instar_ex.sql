@@ -27,6 +27,7 @@ CREATE TABLE comments (
 );
 
 CREATE TABLE likes (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY
     user_id INTEGER NOT NULL,
     photo_id INTEGER NOT NULL,
     created_at TIMESTAMP DEFAULT NOW(),
@@ -36,6 +37,7 @@ CREATE TABLE likes (
 );
 
 CREATE TABLE follows (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY
     follower_id INTEGER NOT NULL,
     followee_id INTEGER NOT NULL,
     created_at TIMESTAMP DEFAULT NOW(),
@@ -51,6 +53,7 @@ CREATE TABLE tags (
 );
 
 CREATE TABLE photo_tags (
+    id INTEGER AUTO_INCREMENT PRIMARY KEY
     photo_id INTEGER NOT NULL,
     tag_id INTEGER NOT NULL,
     FOREIGN KEY(photo_id) REFERENCES photos(id),
