@@ -7,12 +7,49 @@
 
 블로그 주소 : https://docs.google.com/spreadsheets/d/1HEbUQEB_ASZNancXtztdfefjeGQVLSLgr3R0Oe14maU/edit?usp=sharing
 
-중간 프로젝트 발표 URL : https://docs.google.com/spreadsheets/d/1a03E0aYhsv7rWWoRCUwRqIvXshylzF0Jt08sxHTpYKI/edit?usp=sharing
 
 ---
 
 
 # 강의자료
+
+---
+
+## API 서버 개발
+
+- 람다용 파이썬 가상환경 : $conda create -n 가상환경이름 python=3.10 
+
+- API 서버 : https://docs.google.com/presentation/d/1dsCZZ4LjywFe_H5wDFvGe4UVmiB2HiaBIdcmugTQorU/edit?usp=sharing
+
+- Python 으로 MySQL 작업 : https://docs.google.com/presentation/d/1adHZUnwVZ0jA3rAO68K5MnsndpWhl9IR2q_f70wE5bQ/edit?usp=sharing
+
+- 포스트맨 사용법 : https://docs.google.com/presentation/d/1YVJtjcqSCC5Z6zFFE-ix8eugs_uh_vdwZmrvgx5VBKQ/edit?usp=sharing
+
+- JWT 자료 : https://nesoy.github.io/articles/2020-03/JWT
+
+- 포스트맨에서 인증토큰 셋팅하는 방법 : https://docs.google.com/presentation/d/1YVJtjcqSCC5Z6zFFE-ix8eugs_uh_vdwZmrvgx5VBKQ/edit?usp=sharing
+
+- 중요! 가상환경에 설치한 라이브러리 : flask flask-restful mysql-connector-python psycopg-binary passlib flask-jwt-extended email-validator
+
+- 실습 1 : https://docs.google.com/presentation/d/1QKlMbRgWOUaHxqatJGUetrf-6WSSWqdTpBZqv7FW1t4/edit?usp=sharing
+
+- 서버리스에 aws credential 설정 (AWS IAM 생성 후 CMD에서 다음 실행 ) :  $ serverless config credentials --provider aws  --key AKIAZG3RSPRWWKWUZY  --secret OmwoN9ySSYP8zWbricoZEPGo/ikj2QpiVT3HZO
+
+- 실습 2 : https://docs.google.com/presentation/d/16P5E-14EDVCuM3oWA9yWiStA6xZuWJvGjNuzFHdZdrY/edit?usp=sharing
+
+- 실습 2 SQL insert 문 : https://block-edu-test.s3.ap-northeast-2.amazonaws.com/movie_data.zip
+
+- 컨테이너로 처리 : https://docs.google.com/presentation/d/1AP7DgYipGOHmlNFbPqlZ_j1AmUpTo0h4K1RYphCzH7Y/edit?usp=sharing
+
+- 구글 Vision Api : https://cloud.google.com/vision/docs/drag-and-drop?hl=ko
+
+- aws rekognition 매뉴얼 : https://docs.aws.amazon.com/ko_kr/rekognition/latest/dg/what-is.html
+
+- 오픈 API 사용 : https://docs.google.com/presentation/d/1Sis_PGDrhi61UvU1KrmZCIPVud2qjsaoFe7haKJ4bLY/edit?usp=sharing
+
+- 실습 3 : https://docs.google.com/presentation/d/1wKcb0QAeAdUY4W8YHZZaUhARrmrYMdyWSHvhfNPZZ0U/edit?usp=sharing
+
+
 
 ---
 
