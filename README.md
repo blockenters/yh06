@@ -5,7 +5,6 @@
 
 과정소개 : https://docs.google.com/presentation/d/1uzB13Qjkwcq_LVzKhN9RWsTGrOTd21MkV0jl_catrok/edit?usp=sharing
 
-블로그 주소 : https://docs.google.com/spreadsheets/d/1HEbUQEB_ASZNancXtztdfefjeGQVLSLgr3R0Oe14maU/edit?usp=sharing
 
 
 ---
