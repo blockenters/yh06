@@ -4,6 +4,56 @@ from flask_restful import Resource
 from mysql_connection import get_connection
 from mysql.connector import Error
 
+
+class RecipePublishResource(Resource):
+    def put(self, recipe_id):
+
+        try : 
+            connection = get_connection()
+            query = '''update recipe
+                    set is_publish = 1
+                    where id = %s;'''
+            record = (recipe_id, )
+            cursor = connection.cursor()
+            cursor.execute(query, record)
+            connection.commit()
+            cursor.close()
+            connection.close()
+        except Error as e:
+            if cursor is not None:
+                cursor.close()
+            if connection is not None:
+                connection.close()
+            return {'result':'fail',
+                    'error' : str(e)}, 500
+
+        return {"result" : "success"}
+    
+    def delete(self, recipe_id):
+        try : 
+            connection = get_connection()
+            query = '''update recipe
+                    set is_publish = 0
+                    where id = %s;'''
+            record = (recipe_id, )
+            cursor = connection.cursor()
+            cursor.execute(query, record)
+            connection.commit()
+            cursor.close()
+            connection.close()
+        except Error as e:
+            if cursor is not None:
+                cursor.close()
+            if connection is not None:
+                connection.close()
+            return {'result':'fail',
+                    'error' : str(e)}, 500
+
+        return {"result" : "success"}
+
+
+
+
 class RecipeResource(Resource):
     def get(self, recipe_id):
         
