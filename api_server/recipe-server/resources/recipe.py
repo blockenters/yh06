@@ -103,6 +103,27 @@ class RecipeResource(Resource):
 
         return {'result' : 'success'}
 
+    def delete(self, recipe_id) :
+
+        try :
+            connection = get_connection()
+            query = '''delete from recipe
+                        where id = %s;'''
+            record = (recipe_id , )
+            cursor = connection.cursor()
+            cursor.execute(query, record)
+            connection.commit()
+            cursor.close()
+            connection.close()
+        except Error as e:
+            if cursor is not None:
+                cursor.close()
+            if connection is not None:
+                connection.close()
+            return {'result':'fail',
+                    'error' : str(e)}, 500
+
+        return {"result" : "success"}
 
 class RecipeListResource(Resource) :
 
