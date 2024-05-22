@@ -5,7 +5,63 @@ from mysql.connector import Error
 from flask_restful import Resource
 
 from mysql_connection import get_connection
-from utils import hash_password
+from utils import check_password, hash_password
+
+class UserLoginResource(Resource) :
+    def post(self) :
+        
+        # 1. 클라이언트로부터 데이터를 받는다.
+        data = request.get_json()
+
+        if 'email' not in data or 'password' not in data:
+            return {'result' : 'fail'}, 400
+        if data['email'].strip() == '' or data['password'].strip() == '':  
+            return {'result' : 'fail'}, 400
+        # 2. DB로부터 이메일에 해당하는 유저 정보를 가져온다.
+        try :
+            connection = get_connection()
+            query = '''select *
+                        from user
+                        where email = %s ;'''
+            record = ( data['email'] ,  )
+            cursor = connection.cursor(dictionary=True)
+            cursor.execute(query, record)
+
+            result_list = cursor.fetchall()
+
+            print(result_list)
+
+            cursor.close()
+            connection.close()
+
+        except Error as e:
+            if cursor is not None:
+                cursor.close()
+            if connection is not None:
+                connection.close()
+            return {'result':'fail', 'error':str(e)},500
+
+        # 3. 회원인지 확인한다.
+        if result_list == [] :
+            return {'result' : 'fail'} , 401
+
+        # 4. 비밀번호를 체크한다.
+        # 유저가 입력한 비번 data['password']
+        # DB에 암호화된 비번 result_list[0]['password']
+        isCorrect = check_password(data['password'] , result_list[0]['password'])
+        if isCorrect == False :
+            return {'result' : 'fail'} , 401
+
+        # 5. 유저아이디를 가져온다.
+        user_id = result_list[0]['id']
+
+        # 6. JWT 토큰을 만든다.
+        access_token = create_access_token(user_id)
+
+        # 7. 클라이언트에 응답한다.
+
+        return {'result' : 'success', 'access_token':access_token}
+
 
 class UserRegisterResource(Resource) :
     def post(self):
@@ -57,7 +113,7 @@ class UserRegisterResource(Resource) :
                 cursor.close()
             if connection is not None:
                 connection.close()
-            return {'result':'fail'}, 500
+            return {'result':'fail', 'error':str(e)}, 500
 
         # 6-2. user_id를 바로 클라이언트에게 보내면 안되고,
         ##     JWT 로 암호화 해서, 인증토큰을 보내야 한다.

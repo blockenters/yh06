@@ -2,7 +2,7 @@ from flask import Flask
 from flask_restful import Api
 
 from resources.recipe import RecipeListResource, RecipePublishResource, RecipeResource
-from resources.user import UserRegisterResource
+from resources.user import UserLoginResource, UserRegisterResource
 
 from flask_jwt_extended import JWTManager
 from config import Config
@@ -22,6 +22,7 @@ api.add_resource( RecipeListResource  , '/recipes')
 api.add_resource( RecipeResource, '/recipes/<int:recipe_id>' )
 api.add_resource( RecipePublishResource , '/recipes/<int:recipe_id>/publish')
 api.add_resource( UserRegisterResource , '/users/register')
+api.add_resource( UserLoginResource , '/users/login')
 
 if __name__ == '__main__' :
     app.run()
