@@ -1,3 +1,4 @@
+import datetime
 from email_validator import EmailNotValidError, validate_email
 from flask import request
 from flask_jwt_extended import create_access_token
@@ -6,6 +7,8 @@ from flask_restful import Resource
 
 from mysql_connection import get_connection
 from utils import check_password, hash_password
+
+from flask_jwt_extended import get_jwt, jwt_required
 
 class UserLoginResource(Resource) :
     def post(self) :
@@ -56,8 +59,9 @@ class UserLoginResource(Resource) :
         user_id = result_list[0]['id']
 
         # 6. JWT 토큰을 만든다.
+        # access_token = create_access_token(user_id,
+        #                                    expires_delta= datetime.timedelta(minutes=3))
         access_token = create_access_token(user_id)
-
         # 7. 클라이언트에 응답한다.
 
         return {'result' : 'success', 'access_token':access_token}
@@ -117,13 +121,25 @@ class UserRegisterResource(Resource) :
 
         # 6-2. user_id를 바로 클라이언트에게 보내면 안되고,
         ##     JWT 로 암호화 해서, 인증토큰을 보내야 한다.
+        # access_token = create_access_token(user_id,
+        #                                    expires_delta= datetime.timedelta(minutes=3) )
         access_token = create_access_token(user_id)
-
         # 7. 응답할 데이터를 JSON으로 만들어서 리턴.
 
         return {"result" : "success", 'access_token' : access_token}
 
 
+# 로그아웃된 토큰을 저장할, set 을 만든다. 
+jwt_blacklist = set()
+
+class UserLogoutResource(Resource) :
+
+    @jwt_required()
+    def delete(self):
+
+        jti = get_jwt()['jti']
+        jwt_blacklist.add(jti)
+        return
 
 
 

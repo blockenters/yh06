@@ -7,14 +7,17 @@ from mysql.connector import Error
 
 
 class RecipePublishResource(Resource):
+    @jwt_required()
     def put(self, recipe_id):
+        
+        user_id = get_jwt_identity()
 
         try : 
             connection = get_connection()
             query = '''update recipe
                     set is_publish = 1
-                    where id = %s;'''
-            record = (recipe_id, )
+                    where id = %s and user_id = %s;'''
+            record = (recipe_id, user_id )
             cursor = connection.cursor()
             cursor.execute(query, record)
             connection.commit()
@@ -30,13 +33,17 @@ class RecipePublishResource(Resource):
 
         return {"result" : "success"}
     
+    @jwt_required()
     def delete(self, recipe_id):
+
+        user_id = get_jwt_identity()
+
         try : 
             connection = get_connection()
             query = '''update recipe
                     set is_publish = 0
-                    where id = %s;'''
-            record = (recipe_id, )
+                    where id = %s and user_id = %s;'''
+            record = (recipe_id, user_id )
             cursor = connection.cursor()
             cursor.execute(query, record)
             connection.commit()
@@ -117,12 +124,15 @@ class RecipeResource(Resource):
             return {"result" : "fail", 
                     "error" : "해당 아이디는 존재하지 않습니다."},400
 
+    @jwt_required()
     def put(self, recipe_id):
 
         # 1. 클라이언트로 부터 데이터를 받아온다.
         print(recipe_id)
 
         data = request.get_json()
+
+        user_id = get_jwt_identity()
 
         # 2. DB 에 수정한다.
         try :
@@ -134,13 +144,14 @@ class RecipeResource(Resource):
                             num_of_servings = %s,
                             cook_time = %s,
                             directions = %s
-                        where id = %s;'''
+                        where id = %s and user_id = %s;'''
             record = (  data['name'],
                         data['description'],
                         data['num_of_servings'],
                         data['cook_time'],
                         data['directions'],
-                        recipe_id  ) 
+                        recipe_id,
+                        user_id  ) 
 
             cursor = connection.cursor()
             cursor.execute(query, record)
@@ -162,13 +173,16 @@ class RecipeResource(Resource):
 
         return {'result' : 'success'}
 
+    @jwt_required()
     def delete(self, recipe_id) :
+
+        user_id = get_jwt_identity()
 
         try :
             connection = get_connection()
             query = '''delete from recipe
-                        where id = %s;'''
-            record = (recipe_id , )
+                        where id = %s and user_id = %s;'''
+            record = (recipe_id , user_id )
             cursor = connection.cursor()
             cursor.execute(query, record)
             connection.commit()
