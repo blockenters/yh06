@@ -189,12 +189,12 @@ class RecipeListResource(Resource) :
             connection = get_connection()
             ### 2. 쿼리문 만들기 
             query = '''insert into recipe 
-                        (name, description, num_of_servings, cook_time, directions)
+                        (user_id, name, description, num_of_servings, cook_time, directions)
                         values
-                        ( %s , %s, %s, %s, %s );'''
+                        (%s, %s , %s, %s, %s, %s );'''
 
             ### 3. 쿼리에 매칭되는 변수 처리 => 튜플로!!
-            record = (data['name'], data['description'], data['num_of_servings'], data['cook_time'], data['directions'])
+            record = (data['user_id'] , data['name'], data['description'], data['num_of_servings'], data['cook_time'], data['directions'])
 
             ### 4. 커서를 가져온다.
             cursor = connection.cursor()
