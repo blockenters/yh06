@@ -1,0 +1,40 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: pragai
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: memo-server
+# "service" is the name of this project. This will also be added to your AWS resource names.
+service: aws-memo-server
+
+custom:
+  wsgi:
+    app: app.app
+
+provider:
+  name: aws
+  runtime: python3.10
+  region: ap-northeast-2
+functions:
+  api:
+    handler: wsgi_handler.handler
+    events:
+      - http:
+          path: /
+          method: ANY
+      - http:
+          path: /{proxy+}
+          method: ANY
+
+plugins:
+  - serverless-wsgi
+  - serverless-python-requirements
+
+package:
+  individually: true
+  exclude:
+    - node_modules/**  # node_modules 폴더와 그 하위 모든 파일 및 디렉토리 제외
+    - .git/**  # .git 폴더와 그 하위 모든 파일 및 디렉토리 제외
+    - tests/**  # tests 폴더와 그 하위 모든 파일 및 디렉토리 제외
+  include:
+    - src/**  # src 폴더와 그 하위 모든 파일 및 디렉토리 포함
+    - handler.py  # 루트 디렉토리의 handler.py 파일 포함
+    - config/**  # config 폴더와 그 하위 모든 파일 및 디렉토리 포함
