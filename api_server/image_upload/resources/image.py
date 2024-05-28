@@ -24,6 +24,10 @@ class FileUploadResource(Resource):
         
         file = request.files['photo']
 
+        if 'image' not in file.content_type :
+            return {'result' : 'fail', 
+                    'error':'이미지파일만 업로드 가능합니다.'}, 400
+
         print(file)
 
         content = request.form['content']
@@ -36,7 +40,7 @@ class FileUploadResource(Resource):
 
         # 현재시간과 유저아이디등을 조합해서 만든다.
         current_time = datetime.now()
-        file_name = current_time.isoformat().replace(':','_') + '.jpg'
+        file_name = current_time.isoformat().replace(':','_') + '.'+ file.content_type.split('/')[-1]
 
         print(file_name)
 
@@ -52,15 +56,20 @@ class FileUploadResource(Resource):
                      aws_access_key_id = Config.AWS_ACCESS_KEY,
                      aws_secret_access_key = Config.AWS_SECRET_ACCESS_KEY)
         
+        print(client)
+        
         try :
             client.upload_fileobj(file, 
                                   Config.S3_BUCKET,
                                   file_name,
                                   ExtraArgs = {'ACL':'public-read',
                                                'ContentType' : file.content_type})
+            print('upload_fileobj')
         except Exception as e:
             return {'result' : 'fail',
                     'error' : str(e)}, 500
         
+        
+
         return {'result' : 'success',
                 'url' : Config.S3_URL + file_name }
