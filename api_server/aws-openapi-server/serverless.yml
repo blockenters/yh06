@@ -1,0 +1,24 @@
+service: aws-openapi-server
+
+frameworkVersion: '3'
+
+custom:
+  wsgi:
+    app: app.app
+
+provider:
+  name: aws  
+  region: ap-northeast-2
+  ecr: 
+    images:
+      appimage:
+        path: ./
+
+functions:
+  app:
+    image:
+      name: appimage
+    timeout: 120
+    events:
+      - httpApi: '*'
+
