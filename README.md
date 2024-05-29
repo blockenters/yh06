@@ -14,6 +14,107 @@
 
 ---
 
+### Android 
+
+
+- 안드로이드 스튜디오 설치 : https://developer.android.com/studio
+
+- 첫 안드로이드 샘플앱 개발에 필요한 데이터 : https://block1-image-test.s3.ap-northeast-2.amazonaws.com/dice-app-data.zip
+
+- 샘플앱 모양 : https://docs.google.com/presentation/d/1Bdh05PFg37RVJTpR1e54OyGc3ZiiGIYHge4NDS-eOC0/edit?usp=sharing
+
+- 안드로이드 애니메이션 오픈소스 라이브러리 : https://github.com/daimajia/AndroidViewAnimations
+
+- UI : https://docs.google.com/presentation/d/1gu_ucVXElTSTjUYg2UnKIl50RjNwdPmTvd00uGyOE1Y/edit?usp=sharing
+
+- 실습 2 : https://docs.google.com/presentation/d/1iF3dxBLcCB_CTZEVPRuIMa01HtsYiZmTYcqvUOSFI1E/edit?usp=sharing
+
+- 퀴즈앱 데이터 : https://drive.google.com/file/d/1Nm-iljPT7MQXj-_PKGZApswadCASega-/view?usp=sharing
+
+- 알람소리 파일 : https://block1-image-test.s3.ap-northeast-2.amazonaws.com/alarm.zip
+
+- 실습 3 : https://docs.google.com/presentation/d/1UlvkfNeE90mQo5LfnohCxBTw1k5c4QH4VidOZhzLD48/edit?usp=sharing
+
+- 안드로이드 Activity Life Cycle : https://developer.android.com/guide/components/activities/activity-lifecycle?hl=ko
+
+- 실습 5 : https://docs.google.com/presentation/d/1_s6-IUvFuJmjeaQmsr9OBdii0eQvbLXBF2kF5SoQVvI/edit?usp=sharing
+
+- 실습 7 : https://docs.google.com/presentation/d/1KPEm7OGyJBkId7nojHrImhoP265GzTk-nNTQIG7F08o/edit?usp=sharing
+ 
+- Android Studio 에서 깃허브 연동 : https://docs.google.com/presentation/d/1mmr-fPXbF4thl-Y3clPj_4ngRcY3EDkpIdYuZOWOIcU/edit?usp=drive_link
+
+- Json 샘플 URL 1 : https://jsonplaceholder.typicode.com
+
+- 실습 10 : https://docs.google.com/presentation/d/10kvtW8KPNxwYRZwxn5AccK2XpCUd73iP4HAyk2bULPc/edit?usp=sharing
+
+- 실습 10용 URL : https://block1-image-test.s3.ap-northeast-2.amazonaws.com/employees.json
+
+- 네트워크 처리 표시, 액션바와 메뉴, FAB 을 적용하여 업그레이드 하기
+
+- 실습 11 : https://docs.google.com/presentation/d/1o9pzNaauTWSAInM6Yo6QVbiNGUcNIuVprLOgAZji_DI/edit?usp=sharing
+
+- 실습 11용 URL : https://block1-image-test.s3.ap-northeast-2.amazonaws.com/posting.json
+
+- 이미지 처리 라이브러리용 URL1 : https://block-yh-test2.s3.ap-northeast-2.amazonaws.com/2023-01-12T15_46_28.062874.jpg
+
+- 이미지 처리 라이브러리용 URL2 : https://block-yh-test2.s3.ap-northeast-2.amazonaws.com/2023-01-13T03_31_12.564141.jpeg
+
+- 이미지 처리 라이브러리용 URL3 : https://block-yh-test2.s3.ap-northeast-2.amazonaws.com/2023-01-13T03_46_46.079772.jpg
+
+- 실습 12 https://docs.google.com/presentation/d/1iZg-czwOLbAuztrNx80AB-fuhB99zAbv1TB2PAl6T34/edit?usp=sharing
+
+- 실습 12용 URL : https://block1-image-test.s3.ap-northeast-2.amazonaws.com/photos.json
+
+- 안드로이드의 문자, 웹, 전화 등등의 인텐트 사용법 : https://crone.tistory.com/511
+
+- 공유 인텐트 : https://developer.android.com/training/sharing/send?hl=ko#send-text-content
+
+- 실습 13 : https://docs.google.com/presentation/d/1y7ovTm8xHTe3CL5CUNb2IWDbV1bmZezWxwkMTz7Y_qE/edit?usp=sharing
+
+- 페이징 처리 : https://docs.google.com/presentation/d/1juyTN904LazzrDfGB3Y-KZrhjg18FWbuZTUepxlXtQ0/edit?usp=sharing
+
+- 실습 14 : https://docs.google.com/presentation/d/11WHvpWFQZQx8LnDYbAGkZx41VT-mpEHSj-AOHoiXjqg/edit?usp=sharing
+
+- retrofit 라이브러리 사용법 : https://docs.google.com/presentation/d/1O_p-iWCSxDGU-t0Vh2MKghxzbhQEUlBangQKGYeOxPo/edit?usp=sharing
+
+- gradle 설정은 다음처럼.
+
+- implementation("com.squareup.retrofit2:retrofit:2.9.0")
+
+- implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+
+- implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+
+- 우리서버의 메모앱 : https://docs.google.com/presentation/d/1lyCocm7n2cuXrcO4p8hHi2Ec7TsS2Dw7iuknhzYjT_g/edit?usp=sharing
+
+- 안드로이드의 카메라 / 앨범처리는 보안과도 관계가 있어서 복잡도가 있음. 기본코드 올려놨으니(android 폴더) 필요한 부분만 수정해서 사용하면 됨.
+
+- build.gradle 파일에 다음 라이브러리를 설치함 : implementation("commons-io:commons-io:2.4")
+
+- 안드로이드 카메라/갤러리 처리 : https://docs.google.com/presentation/d/1vGdoKS1amPNqYR416mFtNaxwy6NbtwPljz9Ty1qdCiw/edit?usp=sharing
+
+- 우리서버의 포스팅앱 : https://docs.google.com/presentation/d/1wKcb0QAeAdUY4W8YHZZaUhARrmrYMdyWSHvhfNPZZ0U/edit?usp=sharing
+
+- 탭바 구현 : https://docs.google.com/presentation/d/16VXfXSDY_mBRkJOXHKTN22TGLO0ZBjQCaJ4JYt4qSAQ/edit?usp=sharing
+
+- implementation 'androidx.navigation:navigation-fragment:2.5.3'
+
+- implementation 'androidx.navigation:navigation-ui:2.5.3'
+
+- 탭 버튼 아이콘 색 바꾸기 (셀렉터 이용방법) : https://lcw126.tistory.com/330
+
+- 구글맵 공식 페이지 : https://developers.google.com/maps/documentation/android-sdk/config?hl=ko
+
+- 구글맵 서비스를 위한 설정 방법 블로그 : https://webnautes.tistory.com/647
+
+- 위치기반 실습1 : https://docs.google.com/presentation/d/1-6sKk0eICCjfmejyLGe6Kw_bfOP9l17BEUyz48vmE74/edit?usp=sharing
+
+- 위치기반 실습2 : https://docs.google.com/presentation/d/13PAODc16my9K_qOU-Xs4N7QASkDXCR6jN3hmtEwk0-E/edit?usp=sharing
+
+
+
+---
+
 ## API 서버 개발
 
 - 람다용 파이썬 가상환경 : $conda create -n 가상환경이름 python=3.10 
