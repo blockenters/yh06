@@ -58,6 +58,10 @@ class PostingListResource(Resource) :
         # 3. 업로드한 사진의 URL을 만든다.
         image_url = Config.AWS_FILE_URL + file.filename
 
+        # 3-2. rekognition 을 이용해서, object detection 하여,
+        #      태그로 사용할 label 을 뽑는다.
+        label_list = self.detect_labels(file.filename, Config.AWS_S3_BUCKET)
+
         # 4. DB에 user_id, image_url, content 를 저장한다.
         try :
             connection = get_connection()
@@ -68,6 +72,42 @@ class PostingListResource(Resource) :
             record = (user_id, image_url, content)
             cursor = connection.cursor()
             cursor.execute(query, record)
+
+            posting_id = cursor.lastrowid
+
+            for label  in label_list :
+                # tag 테이블에, label 이 있는지 확인해서, 
+                # 있으면, 아이디를 가져오고, 없으면 인서트한 후에 아이디를 가져온다.
+                query = '''select *
+                        from tag
+                        where name = %s;'''
+                record = (label, )
+                
+                cursor = connection.cursor(dictionary=True)
+                cursor.execute(query, record)
+
+                result_list = cursor.fetchall()
+
+                if len(result_list) == 1 :
+                    tag_id = result_list[0]['id']
+                else :
+                    query = '''insert into tag
+                                (name)
+                                values
+                                (%s);'''
+                    record = (label, )
+                    cursor = connection.cursor()
+                    cursor.execute(query, record)
+                    tag_id = cursor.lastrowid
+
+                # 위의 tagId를 posting_tag 테이블에, postingId 와 함께 넣어준다.
+                query = '''insert into posting_tag
+                            (postingId, tagId)
+                            values
+                            ( %s, %s);'''
+                record = (posting_id, tag_id)
+                cursor = connection.cursor()
+                cursor.execute(query, record)
 
             connection.commit()
 
@@ -87,6 +127,32 @@ class PostingListResource(Resource) :
         return {'result' : 'success'}
 
 
+    def detect_labels(self, photo, bucket):
+
+        client = boto3.client('rekognition',
+                     'ap-northeast-2',
+                     aws_access_key_id = Config.AWS_ACCESS_KEY_ID,
+                     aws_secret_access_key = Config.AWS_SECRET_ACCESS_KEY)
+
+        response = client.detect_labels(Image={'S3Object':{'Bucket':bucket,'Name':photo}},
+        MaxLabels=10,
+        # Uncomment to use image properties and filtration settings
+        #Features=["GENERAL_LABELS", "IMAGE_PROPERTIES"],
+        #Settings={"GeneralLabels": {"LabelInclusionFilters":["Cat"]},
+        # "ImageProperties": {"MaxDominantColors":10}}
+        )
+
+        print('Detected labels for ' + photo)
+        print()
+        print(response['Labels'])
+
+        label_list = []
+
+        for label in response['Labels']:
+            print("Label: " + label['Name'])
+            label_list.append(label['Name'])            
+         
+        return label_list
 
 
 
