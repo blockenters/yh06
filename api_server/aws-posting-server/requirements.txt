@@ -1,0 +1,13 @@
+Flask==1.1.4
+Werkzeug==1.0.1
+markupsafe==2.0.1
+
+serverless-wsgi
+
+flask-restful 
+mysql-connector-python 
+psycopg-binary 
+passlib 
+flask-jwt-extended 
+email-validator
+
