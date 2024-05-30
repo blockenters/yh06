@@ -62,6 +62,13 @@ class PostingListResource(Resource) :
         #      태그로 사용할 label 을 뽑는다.
         label_list = self.detect_labels(file.filename, Config.AWS_S3_BUCKET)
 
+        label_str = ','.join(label_list)
+
+        label_str = self.translate(label_str)
+
+        label_list = label_str.split(', ')
+
+
         # 4. DB에 user_id, image_url, content 를 저장한다.
         try :
             connection = get_connection()
@@ -153,6 +160,22 @@ class PostingListResource(Resource) :
             label_list.append(label['Name'])            
          
         return label_list
+
+
+    def translate(self, text) :
+        client = boto3.client(service_name='translate', 
+                              region_name='ap-northeast-2', 
+                              aws_access_key_id = Config.AWS_TRANSLATE_ACCESS_KEY,
+                              aws_secret_access_key = Config.AWS_TRANSLATE_SECRET_ACCESS)
+
+        result = client.translate_text(Text= text,
+                                       SourceLanguageCode="en", 
+                                       TargetLanguageCode="ko")
+        print('TranslatedText: ' + result.get('TranslatedText'))
+        print('SourceLanguageCode: ' + result.get('SourceLanguageCode'))
+        print('TargetLanguageCode: ' + result.get('TargetLanguageCode'))
+
+        return result.get('TranslatedText')
 
 
 
