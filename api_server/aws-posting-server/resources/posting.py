@@ -12,6 +12,42 @@ import boto3
 class PostingListResource(Resource) :
 
     @jwt_required()
+    def get(self):
+
+        offset = request.args.get('offset')
+        limit = request.args.get('limit')
+
+        try:
+            connection = get_connection()
+            query = '''select p.*, u.email, if( l.id is null, 0, 1) as isLike
+                        from follow f
+                        join posting p
+                            on f.followeeId = p.userId
+                        join user u
+                            on p.userId = u.id
+                        left join `like` l
+                            on p.id = l.postingId
+                        where followerId = 1
+                        order by p.createdAt desc
+                        limit '''+offset+''', '''+limit+''';'''
+            cursor = connection.cursor(dictionary=True)
+            cursor.execute(query)
+            result_list = cursor.fetchall()
+            cursor.close()
+            connection.close()
+        except Error as e:
+            return {'result' : 'fail'}, 500
+        
+        i = 0
+        for row in result_list:
+            result_list[i]['createdAt'] = row['createdAt'].isoformat()
+            result_list[i]['updatedAt'] = row['updatedAt'].isoformat()
+            i = i + 1
+        return {'result' : 'success',
+                'items' : result_list,
+                'count' : len(result_list)}
+
+    @jwt_required()
     def post(self):
         
         # 1. 클라언트로부터 데이터 받아온다.
