@@ -75,8 +75,6 @@
 
 - 페이징 처리 : https://docs.google.com/presentation/d/1juyTN904LazzrDfGB3Y-KZrhjg18FWbuZTUepxlXtQ0/edit?usp=sharing
 
-- 실습 14 : https://docs.google.com/presentation/d/11WHvpWFQZQx8LnDYbAGkZx41VT-mpEHSj-AOHoiXjqg/edit?usp=sharing
-
 - retrofit 라이브러리 사용법 : https://docs.google.com/presentation/d/1O_p-iWCSxDGU-t0Vh2MKghxzbhQEUlBangQKGYeOxPo/edit?usp=sharing
 
 - gradle 설정은 다음처럼.
