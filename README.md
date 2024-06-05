@@ -29,6 +29,8 @@
 
 - 실습 2 : https://docs.google.com/presentation/d/1iF3dxBLcCB_CTZEVPRuIMa01HtsYiZmTYcqvUOSFI1E/edit?usp=sharing
 
+- 실습 퀴즈앱 화면 : https://docs.google.com/presentation/d/1THkXAN76ZHT__7IGiBrecC9A-6DsoPaQA1AtadT8Bz8/edit?usp=sharing
+
 - 퀴즈앱 데이터 : https://drive.google.com/file/d/1Nm-iljPT7MQXj-_PKGZApswadCASega-/view?usp=sharing
 
 - 알람소리 파일 : https://block1-image-test.s3.ap-northeast-2.amazonaws.com/alarm.zip
