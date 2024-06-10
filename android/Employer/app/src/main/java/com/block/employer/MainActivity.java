@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
@@ -20,9 +21,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.block.employer.adapter.EmployerAdapter;
+import com.block.employer.model.Employer;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -31,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
 
     // 리사이클러뷰는 관련된 멤버변수 2개 더 작성해야 한다.
     RecyclerView recyclerView;
+    ArrayList<Employer> employerArrayList = new ArrayList<>();
+    EmployerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +47,10 @@ public class MainActivity extends AppCompatActivity {
 
         btnAdd = findViewById(R.id.btnAdd);
         progressBar = findViewById(R.id.progressBar);
+        // 다음 코드는 쌍으로 무조건 같이 작성.
         recyclerView = findViewById(R.id.recyclerView);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +78,41 @@ public class MainActivity extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
 
                         Log.i("EMPLOYER MAIN", response.toString());
+
+                        try {
+                            String status = response.getString("status");
+                            if(status.equals("success") == false){
+                                Toast.makeText(MainActivity.this,
+                                        "네트워크 에러",
+                                        Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+
+                            JSONArray data = response.getJSONArray("data");
+
+                            for(int i = 0; i < data.length(); i++){
+                                JSONObject row = data.getJSONObject(i);
+                                int id = row.getInt("id");
+                                String name = row.getString("employee_name");
+                                int salary = row.getInt("employee_salary");
+                                int age = row.getInt("employee_age");
+
+                                Employer employer = new Employer(id, name, salary, age);
+                                employerArrayList.add(employer);
+                            }
+
+                            // 어댑터를 만들고
+                            adapter = new EmployerAdapter(MainActivity.this, employerArrayList);
+                            // 리사이클러뷰에 어댑터를 적용하면 화면에 나온다.
+                            recyclerView.setAdapter(adapter);
+
+
+                        } catch (JSONException e) {
+                            Toast.makeText(MainActivity.this,
+                                    "파싱 에러",
+                                    Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
                     }
                 },
