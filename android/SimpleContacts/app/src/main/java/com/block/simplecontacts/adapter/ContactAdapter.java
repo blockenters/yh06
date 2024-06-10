@@ -1,6 +1,7 @@
 package com.block.simplecontacts.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +9,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.block.simplecontacts.MainActivity;
 import com.block.simplecontacts.R;
+import com.block.simplecontacts.UpdateActivity;
 import com.block.simplecontacts.model.Contact;
 
 import org.w3c.dom.Text;
@@ -66,6 +70,7 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
         TextView txtName;
         TextView txtPhone;
         ImageView imgDelete;
+        CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -73,6 +78,24 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
             txtName = itemView.findViewById(R.id.txtName);
             txtPhone = itemView.findViewById(R.id.txtPhone);
             imgDelete = itemView.findViewById(R.id.imgDelete);
+            cardView = itemView.findViewById(R.id.cardView);
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, UpdateActivity.class );
+
+                    // 어댑터에서 몇번째를 유저가 눌렀는지
+                    // 인덱스 정보를 알수 있는 함수!
+                    int index = getAdapterPosition();
+
+                    Contact contact = contactArrayList.get(index);
+
+                    intent.putExtra("contact", contact);
+
+                    context.startActivity(intent);
+                }
+            });
 
         }
     }
