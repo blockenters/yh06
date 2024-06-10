@@ -1,6 +1,7 @@
 package com.block.simplecontacts.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -98,6 +100,36 @@ public class ContactAdapter extends RecyclerView.Adapter<ContactAdapter.ViewHold
                 }
             });
 
+            imgDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    // 알러트 다이얼로그를 띄운다.
+                    showAlertDialog();
+                }
+            });
+
+        }
+
+        private void showAlertDialog() {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setCancelable(false);
+            builder.setTitle("주소록 삭제");
+            builder.setMessage("정말 삭제하시겠습니까?");
+            builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    // 1. 메모리에서 데이터를 삭제한다.
+                    int index = getAdapterPosition();
+                    contactArrayList.remove(index);
+
+                    // 2. 화면에서 삭제해준다.
+                    notifyDataSetChanged();
+                }
+            });
+            builder.setNegativeButton("NO", null);
+            builder.show();
         }
     }
 }
