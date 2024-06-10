@@ -55,11 +55,11 @@
 
 - 실습 11용 URL : https://block1-image-test.s3.ap-northeast-2.amazonaws.com/posting.json
 
-- 이미지 처리 라이브러리용 URL1 : https://block-yh-test2.s3.ap-northeast-2.amazonaws.com/2023-01-12T15_46_28.062874.jpg
+- 이미지 처리 라이브러리용 URL1 : https://block-posting.s3.ap-northeast-2.amazonaws.com/2024-05-30T02_16_10.5632781.jpg
 
-- 이미지 처리 라이브러리용 URL2 : https://block-yh-test2.s3.ap-northeast-2.amazonaws.com/2023-01-13T03_31_12.564141.jpeg
+- 이미지 처리 라이브러리용 URL2 : https://block-posting.s3.ap-northeast-2.amazonaws.com/2024-05-30T13_19_45.5510251.jpg
 
-- 이미지 처리 라이브러리용 URL3 : https://block-yh-test2.s3.ap-northeast-2.amazonaws.com/2023-01-13T03_46_46.079772.jpg
+- 이미지 처리 라이브러리용 URL3 : https://block-posting.s3.ap-northeast-2.amazonaws.com/2024-05-30T16_23_10.4157593.jpg
 
 - 실습 12 https://docs.google.com/presentation/d/1iZg-czwOLbAuztrNx80AB-fuhB99zAbv1TB2PAl6T34/edit?usp=sharing
 
