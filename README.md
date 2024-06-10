@@ -45,8 +45,6 @@
  
 - Android Studio 에서 깃허브 연동 : https://docs.google.com/presentation/d/1mmr-fPXbF4thl-Y3clPj_4ngRcY3EDkpIdYuZOWOIcU/edit?usp=drive_link
 
-- Json 샘플 URL 1 : https://jsonplaceholder.typicode.com
-
 - 실습 10 : https://docs.google.com/presentation/d/10kvtW8KPNxwYRZwxn5AccK2XpCUd73iP4HAyk2bULPc/edit?usp=sharing
 
 - 실습 10용 URL : https://block1-image-test.s3.ap-northeast-2.amazonaws.com/employees.json
