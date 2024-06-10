@@ -1,6 +1,8 @@
 package com.block.employer.model;
 
-public class Employer {
+import java.io.Serializable;
+
+public class Employer implements Serializable {
 
     public int id;
     public String name;

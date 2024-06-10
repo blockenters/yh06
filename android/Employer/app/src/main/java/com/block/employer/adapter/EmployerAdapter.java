@@ -15,6 +15,8 @@ import com.block.employer.model.Employer;
 
 import java.util.ArrayList;
 
+import java.text.DecimalFormat;
+
 // 3. 메소드 오버라이딩 할수 있도록 한다.
 // 2. 상속받는다.
 public class EmployerAdapter extends RecyclerView.Adapter<EmployerAdapter.ViewHolder> {
@@ -44,8 +46,12 @@ public class EmployerAdapter extends RecyclerView.Adapter<EmployerAdapter.ViewHo
         Employer employer = employerArrayList.get(position);
 
         holder.txtName.setText( employer.name );
-        holder.txtAge.setText( ""+employer.age );
-        holder.txtSalary.setText( ""+employer.salary );
+        holder.txtAge.setText( "나이 : "+employer.age +"세" );
+
+        DecimalFormat formatter = new DecimalFormat("#,###");
+        String strSalary = formatter.format(employer.salary);
+
+        holder.txtSalary.setText( "연봉 : $"+strSalary );
 
     }
 

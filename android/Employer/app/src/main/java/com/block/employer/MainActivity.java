@@ -1,5 +1,6 @@
 package com.block.employer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -8,6 +9,10 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -40,6 +45,25 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Employer> employerArrayList = new ArrayList<>();
     EmployerAdapter adapter;
 
+    public ActivityResultLauncher<Intent> launcher =
+            registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                    new ActivityResultCallback<ActivityResult>() {
+                        @Override
+                        public void onActivityResult(ActivityResult o) {
+                            Log.i("LIFE MAIN", "onActivityResult 실행");
+                            // 내가 실행한 액티비티로 부터, 데이터를 받아오는 부분
+
+                            if(o.getResultCode() == 1000){
+                               Employer employer = (Employer) o.getData().getSerializableExtra("employer");
+                               employerArrayList.add(0, employer);
+                               adapter.notifyDataSetChanged();
+                            }
+
+                        }
+                    });
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // AddActivity 를 띄운다.
+                Intent intent = new Intent(MainActivity.this, AddActivity.class);
+                launcher.launch(intent);
             }
         });
 
