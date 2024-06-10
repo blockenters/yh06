@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     // AddActivity 로 부터 데이터를 받아야 하므로 액티비티 리절트 런쳐를 만든다.
-    ActivityResultLauncher<Intent> launcher =
+    public ActivityResultLauncher<Intent> launcher =
             registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
                     new ActivityResultCallback<ActivityResult>() {
                         @Override
@@ -50,6 +50,12 @@ public class MainActivity extends AppCompatActivity {
                                 // 메모리의 데이터가 바뀌면
                                 // 리사이클러뷰의 화면에도 데이터를 표시하도록
                                 // 어댑터의 함수를 이용해야 한다.
+                                adapter.notifyDataSetChanged();
+                            } else if(o.getResultCode() == 1001){
+                                Contact contact = (Contact) o.getData().getSerializableExtra("contact");
+                                int index = o.getData().getIntExtra("index", 0);
+                                contactArrayList.set( index , contact );
+
                                 adapter.notifyDataSetChanged();
                             }
 
