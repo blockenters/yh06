@@ -1,6 +1,8 @@
 package com.block.simpleimage.model;
 
-public class Posting {
+import java.io.Serializable;
+
+public class Posting implements Serializable {
 
     public int id;
     public int albumId;
