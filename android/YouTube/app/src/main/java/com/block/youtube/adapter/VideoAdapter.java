@@ -1,6 +1,8 @@
 package com.block.youtube.adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +11,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.block.youtube.PhotoActivity;
 import com.block.youtube.R;
 import com.block.youtube.model.Video;
 import com.bumptech.glide.Glide;
@@ -54,6 +58,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder>{
         TextView txtTitle;
         TextView txtDescription;
         ImageView imgThumb;
+        CardView cardView;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -61,7 +66,39 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder>{
             txtTitle = itemView.findViewById(R.id.txtTitle);
             txtDescription = itemView.findViewById(R.id.txtDescription);
             imgThumb = itemView.findViewById(R.id.imgThumb);
+            cardView = itemView.findViewById(R.id.cardView);
 
+            imgThumb.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, PhotoActivity.class);
+
+                    int index = getAdapterPosition();
+
+                    Video video = videoArrayList.get(index);
+
+                    intent.putExtra("video", video);
+
+                    context.startActivity(intent);
+                }
+            });
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int index = getAdapterPosition();
+                    Video video = videoArrayList.get(index);
+                    String url = "https://www.youtube.com/watch?v=" + video.videoId;
+                    openWebPage(url);
+                }
+            });
+        }
+
+        // 웹브라우저 액티비티를 실행시키는 함수
+        void openWebPage(String url){
+            Uri uri = Uri.parse(url);
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            context.startActivity(intent);
         }
     }
 }

@@ -71,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
+                videoArrayList.clear();
+
                 // 유튜브 API 를 호출해서, 데이터를 받아온다.
                 RequestQueue queue = Volley.newRequestQueue(MainActivity.this);
 

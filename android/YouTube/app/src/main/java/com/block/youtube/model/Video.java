@@ -1,6 +1,8 @@
 package com.block.youtube.model;
 
-public class Video {
+import java.io.Serializable;
+
+public class Video implements Serializable {
     public String videoId;
     public String title;
     public String description;
