@@ -5,6 +5,8 @@ import com.block.memo.model.UserRes;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -20,7 +22,11 @@ public interface UserApi {
     Call<UserRes> login(@Body User user);
 
     // 로그아웃 API
+    @DELETE("/dev/user/logout")
+    Call<UserRes> logout(@Header("Authorization") String token);
 }
+
+
 
 
 
