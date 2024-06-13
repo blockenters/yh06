@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Memo</string>
+
+    <string name="txt_register"><u>회원가입</u></string>
+    <string name="txt_login"><u>로그인</u></string>
+</resources>
