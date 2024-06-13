@@ -79,11 +79,12 @@
 
 - gradle 설정은 다음처럼.
 
-- implementation("com.squareup.retrofit2:retrofit:2.9.0")
+- implementation("com.squareup.retrofit2:retrofit:2.11.0")
 
-- implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+- implementation("com.squareup.retrofit2:converter-gson:2.11.0")
 
-- implementation("com.squareup.okhttp3:logging-interceptor:4.9.0")
+- implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+
 
 - 우리서버의 메모앱 : https://docs.google.com/presentation/d/1lyCocm7n2cuXrcO4p8hHi2Ec7TsS2Dw7iuknhzYjT_g/edit?usp=sharing
 
