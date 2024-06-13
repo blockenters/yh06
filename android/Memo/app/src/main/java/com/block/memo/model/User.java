@@ -15,4 +15,11 @@ public class User {
         this.password = password;
         this.nickname = nickname;
     }
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 }
+
+

@@ -16,6 +16,12 @@ public interface UserApi {
     Call<UserRes> register(@Body User user);
 
     // 로그인 API
+    @POST("/dev/user/login")
+    Call<UserRes> login(@Body User user);
 
     // 로그아웃 API
 }
+
+
+
+
