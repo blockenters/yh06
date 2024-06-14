@@ -1,7 +1,9 @@
 package com.block.memo.adapter;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,18 +11,30 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.block.memo.MainActivity;
 import com.block.memo.R;
 import com.block.memo.UpdateActivity;
+import com.block.memo.api.MemoApi;
+import com.block.memo.api.NetworkClient;
+import com.block.memo.config.Config;
 import com.block.memo.model.Memo;
+import com.block.memo.model.Res;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Formatter;
 import java.util.TimeZone;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> {
 
@@ -101,6 +115,60 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> {
                 }
             });
 
+            imgDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showAlertDialog();
+                }
+            });
+
         }
+
+        private void showAlertDialog() {
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setCancelable(false);
+            builder.setTitle("삭제");
+            builder.setMessage("정말 삭제하시겠습니까?");
+            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                    Retrofit retrofit = NetworkClient.getRetrofitClient(context);
+                    MemoApi api = retrofit.create(MemoApi.class);
+
+                    int index = getAdapterPosition();
+                    Memo memo = memoArrayList.get(index);
+
+                    SharedPreferences sp = context.getSharedPreferences(Config.SP_NAME, Context.MODE_PRIVATE);
+                    String token = sp.getString("token", "");
+
+                    Call<Res> call = api.deleteMemo(memo.getId(),  "Bearer " + token );
+                    call.enqueue(new Callback<Res>() {
+                        @Override
+                        public void onResponse(Call<Res> call, Response<Res> response) {
+
+                            if(response.isSuccessful()){
+
+                                ((MainActivity)context).getNetworkData();
+
+                            }else{
+
+                            }
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<Res> call, Throwable throwable) {
+
+                        }
+                    });
+
+                }
+            });
+            builder.setNegativeButton("No", null);
+            builder.show();
+        }
+
+
     }
 }

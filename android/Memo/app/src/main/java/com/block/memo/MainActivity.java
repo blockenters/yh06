@@ -93,7 +93,7 @@ public class MainActivity extends AppCompatActivity {
         getNetworkData();
     }
 
-    private void getNetworkData() {
+    public void getNetworkData() {
 
         memoArrayList.clear();
 
