@@ -1,14 +1,18 @@
 package com.block.memo;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TimePicker;
 
 import androidx.activity.EdgeToEdge;
@@ -24,7 +28,11 @@ import com.block.memo.model.Memo;
 import com.block.memo.model.Res;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -162,6 +170,8 @@ public class AddActivity extends AppCompatActivity {
 
                 }
 
+                showProgress();
+
                 // 메모생성 API 실행!
                 Retrofit retrofit = NetworkClient.getRetrofitClient(AddActivity.this);
                 MemoApi api = retrofit.create(MemoApi.class);
@@ -170,13 +180,30 @@ public class AddActivity extends AppCompatActivity {
 
                 String token = sp.getString("token", "");
 
-                Memo memo = new Memo(title, date+" "+time, content );
+                // 글로벌 서비스에 맞게, UTC로 변환시켜서 서버로 보내야 한다.
+                SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+                sf.setTimeZone(TimeZone.getDefault());
+                df.setTimeZone(TimeZone.getTimeZone("UTC"));
+
+                String utcTime = "";
+                try {
+                    Date datetime = sf.parse(date+" "+time);
+                    utcTime = df.format(datetime);
+
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
+                }
+
+                Memo memo = new Memo(title, utcTime, content );
 
                 Call<Res> call = api.addMemo("Bearer "+token, memo);
 
                 call.enqueue(new Callback<Res>() {
                     @Override
                     public void onResponse(Call<Res> call, Response<Res> response) {
+
+                        dismissProgress();
 
                         if(response.isSuccessful()){
 
@@ -194,13 +221,27 @@ public class AddActivity extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<Res> call, Throwable throwable) {
-
+                        dismissProgress();
                     }
                 });
 
             }
         });
     }
+
+    Dialog dialog;
+    void showProgress(){
+        dialog = new Dialog(this);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setContentView(new ProgressBar(this));
+        dialog.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+    }
+    void dismissProgress(){
+        dialog.dismiss();
+    }
+
 }
 
 

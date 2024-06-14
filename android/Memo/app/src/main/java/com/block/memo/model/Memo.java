@@ -1,6 +1,8 @@
 package com.block.memo.model;
 
-public class Memo {
+import java.io.Serializable;
+
+public class Memo implements Serializable {
     private int id;
     private int userId;
     private String title;

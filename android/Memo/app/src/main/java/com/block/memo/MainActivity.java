@@ -82,12 +82,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // 내 메모 리스트를 가져온다.
-        getNetworkData();
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // 내 메모 리스트를 가져온다.
+        getNetworkData();
+    }
+
     private void getNetworkData() {
+
+        memoArrayList.clear();
 
         Retrofit retrofit = NetworkClient.getRetrofitClient(MainActivity.this);
 

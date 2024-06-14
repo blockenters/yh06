@@ -1,6 +1,7 @@
 package com.block.memo.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.block.memo.R;
+import com.block.memo.UpdateActivity;
 import com.block.memo.model.Memo;
 
 import java.text.ParseException;
@@ -87,6 +89,17 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> {
             txtContent = itemView.findViewById(R.id.txtContent);
             imgDelete = itemView.findViewById(R.id.imgDelete);
             cardView = itemView.findViewById(R.id.cardView);
+
+            cardView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int index = getAdapterPosition();
+                    Memo memo = memoArrayList.get(index);
+                    Intent intent = new Intent(context, UpdateActivity.class);
+                    intent.putExtra("memo", memo);
+                    context.startActivity(intent);
+                }
+            });
 
         }
     }
