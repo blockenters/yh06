@@ -95,6 +95,9 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> {
         ImageView imgDelete;
         CardView cardView;
 
+        // 몇번째 눌렀는지의 인덱스 정보
+        int index;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -136,7 +139,7 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> {
                     Retrofit retrofit = NetworkClient.getRetrofitClient(context);
                     MemoApi api = retrofit.create(MemoApi.class);
 
-                    int index = getAdapterPosition();
+                    index = getAdapterPosition();
                     Memo memo = memoArrayList.get(index);
 
                     SharedPreferences sp = context.getSharedPreferences(Config.SP_NAME, Context.MODE_PRIVATE);
@@ -149,7 +152,9 @@ public class MemoAdapter extends RecyclerView.Adapter<MemoAdapter.ViewHolder> {
 
                             if(response.isSuccessful()){
 
-                                ((MainActivity)context).getNetworkData();
+                                // ((MainActivity)context).getNetworkData();
+                                memoArrayList.remove(index);
+                                notifyDataSetChanged();
 
                             }else{
 
