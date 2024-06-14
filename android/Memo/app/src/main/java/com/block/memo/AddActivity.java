@@ -2,6 +2,7 @@ package com.block.memo;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,7 +17,19 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.block.memo.api.MemoApi;
+import com.block.memo.api.NetworkClient;
+import com.block.memo.config.Config;
+import com.block.memo.model.Memo;
+import com.block.memo.model.Res;
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.Calendar;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class AddActivity extends AppCompatActivity {
 
@@ -27,7 +40,7 @@ public class AddActivity extends AppCompatActivity {
     Button btnSave;
 
     String date = "";
-
+    String time = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,6 +118,25 @@ public class AddActivity extends AppCompatActivity {
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                                 // 유저가 시간을 선택했을때, 로직 작성.
+
+                                String strHour = "";
+                                if(hourOfDay < 10){
+                                    strHour = "0" + hourOfDay;
+                                }else {
+                                    strHour = "" + hourOfDay;
+                                }
+
+                                String strMin;
+                                if(minute < 10){
+                                    strMin = "0" + minute;
+                                }else{
+                                    strMin = "" + minute;
+                                }
+
+                                time = strHour + ":" + strMin;
+
+                                btnTime.setText(time);
+
                             }
                         },
                         current.get(Calendar.HOUR_OF_DAY),
@@ -115,6 +147,59 @@ public class AddActivity extends AppCompatActivity {
             }
         });
 
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String title = editTitle.getText().toString().trim();
+                String content = editContent.getText().toString().trim();
+
+                // 필수항목 입력했는지 체크
+                if(title.isEmpty() || content.isEmpty() || date.isEmpty() || time.isEmpty()){
+                    Snackbar.make(btnSave,
+                            "필수항목입니다. 모두 입력하세요.",
+                            Snackbar.LENGTH_SHORT).show();
+                    return;
+
+                }
+
+                // 메모생성 API 실행!
+                Retrofit retrofit = NetworkClient.getRetrofitClient(AddActivity.this);
+                MemoApi api = retrofit.create(MemoApi.class);
+
+                SharedPreferences sp = getSharedPreferences(Config.SP_NAME, MODE_PRIVATE);
+
+                String token = sp.getString("token", "");
+
+                Memo memo = new Memo(title, date+" "+time, content );
+
+                Call<Res> call = api.addMemo("Bearer "+token, memo);
+
+                call.enqueue(new Callback<Res>() {
+                    @Override
+                    public void onResponse(Call<Res> call, Response<Res> response) {
+
+                        if(response.isSuccessful()){
+
+                            finish();
+
+                        }else if(response.code() == 400){
+
+                        }else if(response.code() == 500){
+
+                        }else {
+
+                        }
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<Res> call, Throwable throwable) {
+
+                    }
+                });
+
+            }
+        });
     }
 }
 

@@ -9,6 +9,16 @@ public class Memo {
     private String createdAt;
     private String updatedAt;
 
+    public Memo(){
+
+    }
+
+    public Memo(String title, String date, String content) {
+        this.title = title;
+        this.date = date;
+        this.content = content;
+    }
+
     public int getId() {
         return id;
     }
