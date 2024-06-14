@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 
@@ -19,10 +20,16 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.block.memo.adapter.MemoAdapter;
+import com.block.memo.api.MemoApi;
 import com.block.memo.api.NetworkClient;
 import com.block.memo.api.UserApi;
 import com.block.memo.config.Config;
+import com.block.memo.model.Memo;
+import com.block.memo.model.MemoList;
 import com.block.memo.model.UserRes;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     ProgressBar progressBar;
     Button btnAdd;
     RecyclerView recyclerView;
+    ArrayList<Memo> memoArrayList = new ArrayList<>();
+    MemoAdapter adapter;
 
 
     String token;
@@ -64,7 +73,58 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(MainActivity.this));
 
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
 
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        // 내 메모 리스트를 가져온다.
+        getNetworkData();
+
+    }
+
+    private void getNetworkData() {
+
+        Retrofit retrofit = NetworkClient.getRetrofitClient(MainActivity.this);
+
+        MemoApi api = retrofit.create(MemoApi.class);
+
+        Call<MemoList> call = api.getMemoList("Bearer "+token);
+
+        call.enqueue(new Callback<MemoList>() {
+            @Override
+            public void onResponse(Call<MemoList> call, Response<MemoList> response) {
+                progressBar.setVisibility(View.GONE);
+
+                if(response.isSuccessful()){
+
+                    MemoList memoList = response.body();
+
+                    // 비어있는 어레이리스트에, 받아온 리스트를 담아준다!
+
+                    memoArrayList.addAll( memoList.getItems() );
+
+                    // 데이터가 준비 완료 되었으니,
+                    // 어뎁터 만들어서, 리사이클러뷰에 적용한다.
+                    adapter = new MemoAdapter(MainActivity.this, memoArrayList);
+                    recyclerView.setAdapter(adapter);
+
+
+                }else {
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<MemoList> call, Throwable throwable) {
+                progressBar.setVisibility(View.GONE);
+            }
+        });
 
     }
 
