@@ -1,7 +1,7 @@
 package com.block.postingapp.adapter;
 
 import android.content.Context;
-import android.media.Image;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +12,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.block.postingapp.R;
+import com.block.postingapp.api.NetworkClient;
+import com.block.postingapp.api.PostingApi;
+import com.block.postingapp.config.Config;
 import com.block.postingapp.model.Posting;
+import com.block.postingapp.model.Res;
 import com.bumptech.glide.Glide;
 
 import java.text.ParseException;
@@ -20,6 +24,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHolder> {
 
@@ -96,6 +105,80 @@ public class PostingAdapter extends RecyclerView.Adapter<PostingAdapter.ViewHold
             txtEmail = itemView.findViewById(R.id.txtEmail);
             txtCreatedAt = itemView.findViewById(R.id.txtCreatedAt);
             imgLike = itemView.findViewById(R.id.imgLike);
+
+            imgLike.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int index = getAdapterPosition();
+                    Posting posting = postingArrayList.get(index);
+                    if( posting.isLike == 0 ){
+                        setPostingLike( posting );
+                    }else {
+                        deletePostingLike(posting);
+                    }
+                }
+            });
+        }
+
+        private void deletePostingLike(Posting posting) {
+
+            Retrofit retrofit = NetworkClient.getRetrofitClient(context);
+            PostingApi api = retrofit.create(PostingApi.class);
+
+            SharedPreferences sp = context.getSharedPreferences(Config.SP_NAME, Context.MODE_PRIVATE);
+            String token = sp.getString("token", "");
+
+            Call<Res> call = api.deletePostingLike("Bearer "+token, posting.id );
+            call.enqueue(new Callback<Res>() {
+                @Override
+                public void onResponse(Call<Res> call, Response<Res> response) {
+                    if(response.isSuccessful()){
+                        posting.isLike = 0;
+                        notifyDataSetChanged();
+                    }else{
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Res> call, Throwable throwable) {
+
+                }
+            });
+
+
+        }
+
+        private void setPostingLike(Posting posting) {
+
+            Retrofit retrofit = NetworkClient.getRetrofitClient(context);
+            PostingApi api = retrofit.create(PostingApi.class);
+
+            SharedPreferences sp = context.getSharedPreferences(Config.SP_NAME, Context.MODE_PRIVATE);
+            String token = sp.getString("token", "");
+
+            Call<Res> call = api.setPostingLike( "Bearer " + token,  posting.id );
+
+            call.enqueue(new Callback<Res>() {
+                @Override
+                public void onResponse(Call<Res> call, Response<Res> response) {
+                    if(response.isSuccessful()){
+
+                        // 메모리 먼저 is_like 데이터를 1로 변경
+                        posting.isLike = 1;
+                        notifyDataSetChanged();
+
+                    }else{
+
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Res> call, Throwable throwable) {
+
+                }
+            });
+
         }
     }
 }
