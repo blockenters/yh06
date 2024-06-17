@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
             OutputStream os;
             try {
                 os = new FileOutputStream(photoFile);
-                photo.compress(Bitmap.CompressFormat.JPEG, 50, os);
+                photo.compress(Bitmap.CompressFormat.JPEG, 20, os);
                 os.flush();
                 os.close();
             } catch (Exception e) {
@@ -255,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
                 OutputStream os;
                 try {
                     os = new FileOutputStream(photoFile);
-                    photo.compress(Bitmap.CompressFormat.JPEG, 60, os);
+                    photo.compress(Bitmap.CompressFormat.JPEG, 20, os);
                     os.flush();
                     os.close();
                 } catch (Exception e) {
