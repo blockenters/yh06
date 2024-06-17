@@ -6,5 +6,6 @@ public class Config {
     public static final String SP_NAME = "posting_app";
 
 
+    public static final String FILE_PROVIDER = "com.block.postingapp.fileprovider";
 }
 
