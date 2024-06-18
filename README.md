@@ -98,9 +98,9 @@
 
 - 탭바 구현 : https://docs.google.com/presentation/d/16VXfXSDY_mBRkJOXHKTN22TGLO0ZBjQCaJ4JYt4qSAQ/edit?usp=sharing
 
-- implementation 'androidx.navigation:navigation-fragment:2.5.3'
+- implementation("androidx.navigation:navigation-fragment:2.5.3")
 
-- implementation 'androidx.navigation:navigation-ui:2.5.3'
+- implementation("androidx.navigation:navigation-ui:2.5.3")
 
 - 탭 버튼 아이콘 색 바꾸기 (셀렉터 이용방법) : https://lcw126.tistory.com/330
 
