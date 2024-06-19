@@ -1,5 +1,11 @@
 # yh06
 
+---
+
+프로젝트 샘플 양식 : https://docs.google.com/presentation/d/19zPAh2nc1LeoLCPzlyke1lGJt73m5xASQB7eeLFhZZ4/edit?usp=sharing
+
+조편성 및 일정 공유 : https://docs.google.com/spreadsheets/d/1n4JDVij-IIBA189e5w7kuB3ZxbUpHOag-yu3msBciO0/edit?usp=sharing
+
 
 ---
 
@@ -105,8 +111,6 @@
 - 탭 버튼 아이콘 색 바꾸기 (셀렉터 이용방법) : https://lcw126.tistory.com/330
 
 - 구글맵 공식 페이지 : https://developers.google.com/maps/documentation/android-sdk/config?hl=ko
-
-- 구글맵 서비스를 위한 설정 방법 블로그 : https://webnautes.tistory.com/647
 
 - 위치기반 실습1 : https://docs.google.com/presentation/d/1-6sKk0eICCjfmejyLGe6Kw_bfOP9l17BEUyz48vmE74/edit?usp=sharing
 
