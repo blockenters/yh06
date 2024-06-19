@@ -18,6 +18,9 @@
         android:theme="@style/Theme.PlaceApp"
         tools:targetApi="31">
         <activity
+            android:name=".PlaceActivity"
+            android:exported="false" />
+        <activity
             android:name=".MapActivity"
             android:exported="false" />
 

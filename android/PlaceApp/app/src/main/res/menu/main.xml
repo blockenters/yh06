@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/menuPlace"
+        android:icon="@drawable/location_on_24dp_fill0_wght400_grad0_opsz24"
+        android:title="지도"
+        app:showAsAction="always" />
+</menu>

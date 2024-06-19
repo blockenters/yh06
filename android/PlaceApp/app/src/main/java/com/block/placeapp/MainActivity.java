@@ -1,12 +1,15 @@
 package com.block.placeapp;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,9 +32,12 @@ import com.block.placeapp.api.PlaceApi;
 import com.block.placeapp.config.Config;
 import com.block.placeapp.model.Place;
 import com.block.placeapp.model.PlaceList;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.ArrayList;
 
+import dalvik.annotation.optimization.FastNative;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -54,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
     double lat;
     double lng;
 
+    boolean isGPSReady = false;
 
     String keyword;
 
@@ -61,6 +68,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.i("PLACE MAIN", "위도 : " + lat + " 경도 : "+lng);
+
+
         editKeyword = findViewById(R.id.editKeyword);
         imgSearch = findViewById(R.id.imgSearch);
         progressBar = findViewById(R.id.progressBar);
@@ -77,6 +88,8 @@ public class MainActivity extends AppCompatActivity {
             public void onLocationChanged(@NonNull Location location) {
                 lat = location.getLatitude();
                 lng = location.getLongitude();
+
+                isGPSReady = true;
 
                 Log.i("PLACES MAIN", "위도 : " + lat + " , 경도 : " + lng);
 
@@ -100,6 +113,14 @@ public class MainActivity extends AppCompatActivity {
         imgSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                if(isGPSReady == false){
+                    Snackbar.make(imgSearch,
+                            "GPS로 위치를 찾고 있습니다. 잠시후에 검색해주세요",
+                            Snackbar.LENGTH_SHORT).show();
+                    return;
+                }
+
                 keyword = editKeyword.getText().toString().trim();
 
                 if(keyword.isEmpty()){
@@ -175,6 +196,31 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        int itemId = item.getItemId();
+
+        if(itemId == R.id.menuPlace){
+
+            Intent intent = new Intent(MainActivity.this, PlaceActivity.class);
+            intent.putExtra("placeArrayList", placeArrayList);
+
+            intent.putExtra("lat", lat);
+            intent.putExtra("lng", lng);
+
+            startActivity(intent);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
 
