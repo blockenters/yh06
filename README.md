@@ -1,5 +1,11 @@
 # yh06
 
+---
+
+프로젝트 샘플 양식 : https://docs.google.com/presentation/d/19zPAh2nc1LeoLCPzlyke1lGJt73m5xASQB7eeLFhZZ4/edit?usp=sharing
+
+조편성 및 일정 공유 : https://docs.google.com/spreadsheets/d/1n4JDVij-IIBA189e5w7kuB3ZxbUpHOag-yu3msBciO0/edit?usp=sharing
+
 
 ---
 
