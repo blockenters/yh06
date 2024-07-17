@@ -1,0 +1,20 @@
+service: <aws-test>
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: provided.al2  # Amazon Linux 2 사용
+  region: <ap-northeast-2>
+  ecr:
+    images:
+      appimage:
+        uri: <900050315480>.dkr.ecr.<ap-northeast-2>.amazonaws.com/<aws-test>:latest
+
+functions:
+  app:
+    image:
+      name: appimage
+    timeout: 60
+    events:
+      - httpApi: '*'
