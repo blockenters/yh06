@@ -6,6 +6,8 @@
 
 조편성 및 일정 공유 : https://docs.google.com/spreadsheets/d/1n4JDVij-IIBA189e5w7kuB3ZxbUpHOag-yu3msBciO0/edit?usp=sharing
 
+취업 준비 : https://docs.google.com/presentation/d/1DJbSa6dWlv1jKE_SAWOKhdGPXLXS0d2i7pguxZQbr0k/edit?usp=sharing
+
 
 ---
 
